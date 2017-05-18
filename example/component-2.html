@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <script src="../assets/js/vue.min.js"></script>
+</head>
+<body>
+    <h1>component2</h1>
+    <div id="app">
+        <!-- <hello ></hello> -->
+        <world></world>
+    </div>
+
+
+    <script>
+      // Vue.component('hello',{
+      //   template:'<div>全局化註冊的-&gt; &lt;hello&gt;</div>'
+      // })
+
+      worldworld = {
+        template:'<div>my here is{{propD}} </div>',
+        // props:['Here']
+        props:{
+          // 基礎類型檢測('null' 意思是任何類型都可以)
+          propA:Number,
+          // 多種類型
+          propB: [String,Number],
+          // 必傳且是字符串
+          propC:{
+            type:String,
+            required:true
+          },
+          // 數字，有默認值
+          propD:{
+            type:Number,
+            default:100
+          },
+          // 數組/對象的默認值應當由一個工廠函數返回
+          propE:{
+            type:Object,
+            default:function() {
+              return {message:'hello'}
+            }
+          },
+          // 自定義驗證函數
+          propF:{
+            validator: function(value) {
+              return value>10
+            }
+          }
+        }
+      }
+
+      var vm = new Vue({
+        el:'#app',
+        data:{
+          message:'USA'
+        },
+        components:{
+          "world":worldworld
+        }
+      })
+
+    </script>
+</body>
+</html>

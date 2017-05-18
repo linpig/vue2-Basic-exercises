@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <script src="../assets/js/vue.min.js"></script>
+</head>
+<body>
+    <h1>Mixin</h1>
+    <div id="app">
+        {{message}}
+        <p><button @click="jia">+</button></p>
+    </div>
+
+    <script>
+  // 第一個執行
+    Vue.mixin({
+      created:function(){
+        console.log('我是全局混入的');
+      }
+    })
+
+    var aaa = {
+
+      created:function(){
+        console.log('我是被混入的');
+      }
+
+    }
+    var bbb = {
+
+      created:function(){
+        console.log('我是被拓展出來的');
+      }
+    }
+// 第三個執行
+      var vm = new Vue({
+        el:'#app',
+        data:{
+          message:'hello Vue!'
+        },
+        methods:{
+          jia:function(){
+              console.log('我被加了');
+          }
+        },
+        // 第個執行
+        created:function(){
+          console.log('我是構造器裡原裝的');
+        },
+        // 只跟著對象
+          // 第二個執行
+        extends:bbb,
+        // 第三個執行
+        mixins:[aaa]
+      })
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <script src="../assets/js/vue.min.js"></script>
+</head>
+<body>
+    <h1>v-bind</h1>
+    <div id="app">
+        <img v-bind:src="imageSrc" :width="width" alt="">
+        <hr>
+        <div :class="className">1、綁定class</div>
+        <!-- classA style 裡面的 需要靠true false判斷是否啟用 -->
+        <div :class="{classA:colorOr}">2、綁定class中的判斷</div>
+        <div :class="[classA,classB]">3、綁定class中使用數組</div>
+        <!-- 三元表達式 如果colorOr是true的話執行classA不是的話執行classB  數組模式下使用-->
+        <div :class="[colorOr?classA:classB]">4、綁定class中使用三元表達式</div>
+        <!-- classA進行判斷顯示樣式 -->
+        <div :class="[{classA:colorOr},classB]">5、綁定class中使用判斷組合</div>
+        <hr>
+        <div :style="{color:red,fontSize:font}">6、style綁定</div>
+        <div :style="fontArray">7、style綁定</div>
+    </div>
+    <style>
+        .classA{
+          color:red;
+
+        }
+        .classB{
+          font-size: 200%;
+        }
+    </style>
+    <script>
+      var aaaa = new Vue({
+        el:'#app',
+        data:{
+          imageSrc:'https://vuejs.org/images/logo.png',
+          width:'100',
+          className:'classA',
+          colorOr:false,
+          classA:'classA',
+          classB:'classB',
+          red:'red',
+          font:'30px',
+          fontArray:{
+            color:'green',
+            fontSize:'12px'
+          }
+
+
+        }
+      })
+    </script>
+</body>
+</html>

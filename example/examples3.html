@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <script src="../assets/js/vue.min.js"></script>
+</head>
+<body>
+    <h1>實例事件</h1>
+    <div id="app">
+        <p>{{a}}</p>
+        <button @click="jia">+</button>
+    </div>
+    <p><button onclick="jian()">-</button></p>
+    <p><button onclick="off()">關閉</button></p>
+
+    <script>
+      var vm = new Vue({
+        el:'#app',
+        data:{
+          a:1
+        },
+        methods:{
+          jia:function(ee){
+            this.a ++
+          }
+        }
+      })
+// 只執行一次
+// vm.once
+
+      vm.$on('jian',function(num){
+        console.log('執行了jian()');
+        this.a -= num
+      })
+
+      function jian(){
+        // 觸發事件 methods事件
+        vm.$emit('jian','2')
+      }
+
+      function off(){
+        // 將事件關閉
+        
+        vm.$off('jian')
+      }
+    </script>
+</body>
+</html>

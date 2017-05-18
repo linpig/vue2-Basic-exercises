@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <script src="../assets/js/vue.min.js"></script>
+</head>
+<body>
+    <h1>vue.directive自定義指令</h1>
+    <hr>
+    <div id="app">
+      <div v-wos.color="color" id="aaa">
+        {{num}}
+      </div>
+      <p>
+          <button @click="jia">+</button>
+
+      </p>
+      <p>
+        <button onclick="xiezai()">解綁</button>
+      </p>
+    </div>
+
+    <script>
+    // 解綁語法
+
+    function xiezai() {
+      vm.$destroy();
+    }
+
+      Vue.directive('wos',{
+          bind:function(el,binding,vnode){
+            // 當被綁定
+            console.log('1- bind');
+            // var s = JSON.stringify
+            //
+            // el.innerHTML =
+            // 'name:'  + s(binding.name) + '<br>' +
+            // 'value:'  + s(binding.value) + '<br>' +
+            // 'expression:'  + s(binding.expression) + '<br>' +
+            // 'argument:'  + s(binding.arg) + '<br>' +
+            // 'modifiers:'  + s(binding.modifiers) + '<br>' +
+            // 'vnode keys:'  +  Object.keys(vnode).join(', ');
+            el.style="color:" +binding.value
+
+          },
+          inserted:function(){
+            // 綁定到節點
+            console.log('2- inserted');
+
+          },
+          update:function(el,binding,vnode){
+            // 組建更新完成
+            console.log('3- update');
+            el.style="color:green"
+
+          },
+          componentUpdated:function(){
+            // 組建更新完成
+            console.log('4- componentUpdated');
+
+          },
+          unbind:function(){
+            // 解綁
+            console.log('5- unbind');
+
+          },
+      });
+
+      var vm = new Vue({
+        el:'#app',
+        data:{
+          num:10,
+          color:'red'
+        },
+        methods:{
+          jia:function() {
+            this.num ++
+          }
+        }
+      })
+    </script>
+</body>
+</html>

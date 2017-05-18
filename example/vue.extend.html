@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <script src="../assets/js/vue.min.js"></script>
+</head>
+<body>
+    <h1>Vue.extend</h1>
+    <hr>
+    <div id="header">
+
+
+    </div>
+    <div id="footer">
+    <script>
+      var header_aaa = Vue.extend({
+        template:'<p>{{message}}</p>',
+        data:function(){
+          return{
+            message:'Hello my is Header'
+          }
+        }
+      })
+
+      var footer_aaa = Vue.extend({
+        template:'<p>{{message}}</p>',
+        data:function(){
+          return{
+            message:'Hello my is footer'
+          }
+        }
+      })
+
+      new header_aaa().$mount('#header')
+      new footer_aaa().$mount('#footer')
+    </script>
+</body>
+</html>

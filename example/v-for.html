@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <script src="../assets/js/vue.min.js"></script>
+</head>
+<body>
+    <h1>標題</h1>
+    <div id="app">
+        <h2>小到大</h2>
+        <ul>
+          <li v-for="aaaa in students">
+            {{aaaa}}
+          </li>
+        </ul>
+        <h2>大到小</h2>
+        <ul>
+          <li v-for="(bbb,index) in devst">
+            {{index}} - {{bbb.name}} - {{bbb.age}}
+          </li>
+        </ul>
+    </div>
+
+    <script>
+      var aaaa = new Vue({
+        el:'#app',
+        data:{
+          student:[2,5,56,57,58,48,78,98,26],
+
+          st:[
+            {name:'wos',age:'35'},
+            {name:'taobao',age:'28'},
+            {name:'sohu',age:'34'},
+            {name:'sina',age:'58'},
+            {name:'youku',age:'29'},
+            {name:'tw',age:'18'},
+          ]
+        },
+        computed:{
+          students:function(){
+            return this.student.sort(sortNumber)
+            // return this.student.reverse()
+          },
+          devst:function(){
+            return sortByKey(this.st,'age').reverse()
+          }
+        }
+      })
+      // 排序函數
+      function sortByKey(array, key) {
+        return array.sort(function(a,b) {
+          var x = a[key]; var y = b[key];
+          // 調整x<y可以修改大到小，小到大
+          return ((x<y) ? -1 : ((x>y)?1:0));
+        });
+      }
+
+      // 先定義sortNubmer
+      function sortNumber(a,b){
+        return a - b
+      }
+    </script>
+</body>
+</html>

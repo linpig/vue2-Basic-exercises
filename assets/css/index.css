@@ -1,0 +1,10 @@
+h1{
+  font-size: 2em;
+  color:red;
+  border-bottom:1px solid red;
+}
+
+
+[v-cloak] > * { display:none; }
+
+[v-cloak]::before { content: "loading..."; }

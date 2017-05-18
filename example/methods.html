@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <script src="../assets/js/vue.min.js"></script>
+</head>
+<body>
+    <h1>Methods</h1>
+    <div id="app">
+        <p>{{a}}</p>
+        <p><button @click="jiajia">+</button></p>
+        <!-- 組件綁定事件 -->
+        <p><btn @click.native="jia"></btn></p>
+    </div>
+    <button onclick="vm.jia()">外部訪問構造器裡的事件</button>
+
+    <!-- 阻止點擊事件冒泡 -->
+    <a v-on:click.stop="doThis"></a>
+
+    <!-- 提交事件不再重載頁面 -->
+    <form v-on:submit.prevent="onSubmit"></form>
+
+    <!-- 添加事件偵聽器時使用事件捕獲模式 -->
+    <div v-on:click.capture="doThis">...</div>
+    <!-- 只當事件在該元素本身(而不是子元素)觸發時觸發回調 -->
+    <div v-on:click.self="doThat">...</div>
+
+    <!-- 修飾符可以串連 -->
+    <a v-on:click.stop.prevent="doThat"></a>
+    <script>
+    function jiajia(){
+      vm.a ++
+    }
+      var btn = {
+        template:'<button>外部組件</button>'
+      }
+
+      var vm = new Vue({
+        el:'#app',
+        data:{
+          a:1
+        },
+        methods:{
+          jia:function(num,event){
+              this.a ++
+          }
+        },
+        components:{
+          "btn":btn
+        }
+      })
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>v-if v-show v-else</title>
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <script src="../assets/js/vue.min.js"></script>
+</head>
+<body>
+    <h1>v-if v-show v-else</h1>
+    <p>v-if 判斷是否加載,v-show:調整css display</p>
+    <hr>
+    <div id="app">
+      <h2>v-if</h2>
+        <div v-if="ok">原來是真的啊！</div>
+        <div v-else>原來是假的啊！</div>
+
+        <div v-if="ok2">2是真的</div>
+      <h2>v-show</h2>
+      <div v-show="show_ok">原來是真的啊！</div>
+
+
+    </div>
+
+    <script>
+      var aaaa = new Vue({
+        el:'#app',
+        data:{
+          ok:false,
+          ok2:true,
+          show_ok:true
+        }
+      })
+    </script>
+</body>
+</html>

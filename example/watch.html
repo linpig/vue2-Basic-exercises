@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <script src="../assets/js/vue.min.js"></script>
+</head>
+<body>
+    <h1>Watch</h1>
+    <div id="app">
+        <p>蘋果</p>
+        <p>購買數量：{{n}}</p>
+        <p><button @click="jian">-</button><button @click="jia">+</button></p>
+    </div>
+
+    <script>
+      var vm = new Vue({
+        el:'#app',
+        data:{
+          n:'1'
+        },
+        methods:{
+          jia:function(){
+            this.n++
+          },
+          jian:function(){
+            this.n --
+          }
+        },
+        watch:{
+          // n:function(newVal,oldVal){
+          //   if(newVal<1){
+          //     this.n = 1
+          //   }
+          // }
+        }
+      })
+      // 促銷
+      vm.$watch('n',function(newVal,oldVal){
+        if(newVal<1){
+          vm.n = 1
+        }
+      },{deep:true,immediate:true})
+    </script>
+</body>
+</html>

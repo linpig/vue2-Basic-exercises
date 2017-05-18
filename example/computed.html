@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <script src="../assets/js/vue.min.js"></script>
+</head>
+<body>
+    <h1>computed</h1>
+    <div id="app">
+        <p>原價：{{yuanjia}}</p>
+        <p>折價：{{zhekou}}</p>
+        <p>優惠價：{{xianjia}}</p>
+        <button @click="add">++</button>
+
+    </div>
+
+    <script>
+      var vm = new Vue({
+        el:'#app',
+        data:{
+          yuanjia:10,
+          zhekou:0.7
+        },
+        computed:{
+          xianjia:function(){
+            return '$' + this.yuanjia * this.zhekou
+          }
+        },
+        methods:{
+          add:function(){
+            this.yuanjia++
+          }
+        }
+      })
+    </script>
+</body>
+</html>

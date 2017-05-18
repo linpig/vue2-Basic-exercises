@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <script src="../assets/js/vue.min.js"></script>
+</head>
+<body>
+    <h1>其他的指令</h1>
+      <div id="app" v-cloak>
+          <p v-pre>{{message}}</p>
+          <p v-cloak>在瀏覽器為客戶渲染完成之前，您是看不到我的！</p>
+          <hr>
+          <!-- v-once只在頁面加載跑一次 -->
+          <p v-once>原先輸入的是：{{message}}</p>
+          <textarea name="name" rows="8" cols="80" v-model="message"></textarea>
+      </div>
+    <style>
+    [v-cloak] {
+display: none;
+}
+    </style>
+    <script>
+      var vm = new Vue({
+        el:'#app',
+        data:{
+          message:'hello Vue!'
+        }
+      })
+    </script>
+</body>
+</html>

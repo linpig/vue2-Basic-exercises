@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <script src="../assets/js/vue.min.js"></script>
+</head>
+<body>
+    <h1>component</h1>
+    <div id="app">
+        <goods v-for="aaa in goods">
+          <span slot="name">{{aaa.name}}</span>
+          <span slot="num">{{aaa.num}}</span>
+        </goods>
+    </div>
+
+    <template id="demo">
+        <p>
+          名稱：<slot name="name"></slot>
+          數量：<slot name="num"></slot>
+        </p>
+    </template>
+
+    <script>
+      Vue.component('hello',{
+        template:'<div>全局化註冊的-&gt; &lt;hello&gt;</div>'
+      })
+
+      goods = {
+        template:'#demo'
+      }
+
+      var vm = new Vue({
+        el:'#app',
+        data:{
+          goods:[
+            {name:'pen',num:'20'},
+            {name:'car',num:'1'}
+          ]
+        },
+        components:{
+          "goods":goods,
+
+        }
+      })
+
+    </script>
+</body>
+</html>

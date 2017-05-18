@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <script src="../assets/js/vue.min.js"></script>
+</head>
+<body>
+    <h1>標題</h1>
+    <div id="app">
+        <ul>
+          <li v-for="aaa in goods">
+            {{aaa.name}} - {{aaa.num}}
+
+        </li>
+      </ul>
+      <p>總計{{count}}件商品</p>
+      <p><button @click="qingkong">清空</button></p>
+
+    </div>
+<button onclick="add()">+++++</button>
+    <script>
+      function add(){
+        // Vue.set(asdf,'count','4')
+        asdf.goods.push({name:'house',num:'1'})
+        vm.count ++
+      }
+      var asdf = {
+          count:3,
+          goods:[
+            {name:'car',num:'1'},
+            {name:'pen',num:'2'},
+          ]
+      }
+      var vm = new Vue({
+        el:'#app',
+        data:asdf,
+        methods:{
+          qingkong:function(){
+            this.count = 0;
+            this.goods = [];
+          }
+        }
+      })
+    </script>
+</body>
+</html>
